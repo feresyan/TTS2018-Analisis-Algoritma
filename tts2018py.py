@@ -4,11 +4,15 @@ Created on Fri Sep  7 08:26:40 2018
 
 @author: feresyan
 """
+#Variabel Global
+import numpy as np
 
 bilangan = []
 kamus = []
+abjad = []
+matriks = []
 
-def tts2018():
+def inputBilangan():
     angka = ''
     bil = input("Masukan 3 buah Bilangan !\n") #input 3 buah bilangan untuk kamus, baris dan kolom
     length = len(bil) #mengambil panjang inputan user
@@ -37,7 +41,8 @@ def tts2018():
         elif bilangan[2] < 1 or bilangan[2] > 6 :
             print('error : nilai kolom lebih dari 7 atau kurang dari 1')
         else:
-            inputKamus()
+            boolean = inputKamus()
+            return boolean
         
 def inputKamus():
     word = ''
@@ -54,6 +59,95 @@ def inputKamus():
         else: #jika string yang dibaca spasi, maka masukan nilai word kedalam list kamus
             kamus.append(word)
             word = ''
-    print(kamus)
+    if len(kamus) < bilangan[0]:
+        print('error : kamus kurang dari',bilangan[0])
+    else:
+        boolean = inputAlphabet()
+        return boolean
     
-tts2018()
+def inputAlphabet():
+    total_huruf = bilangan[1] * bilangan[2]
+    print('\nMasukan',total_huruf,'huruf untuk membentuk tts berukuran',bilangan[1],'x',bilangan[2],'! (Pisahkan dengan spasi antar huruf)')
+    huruf = input()
+    length = len(huruf)
+    
+    for i in range(0,length):
+        if huruf[i] != ' ':
+            abjad.append(huruf[i])
+    if len(abjad) < total_huruf:
+        print('error : huruf kurang dari',total_huruf)
+    else:
+        return True
+
+
+def buatMatriks():
+    z = 0
+    if inputBilangan() == True:
+        for x in range(0,bilangan[1]):
+            matriks.append([]) #Buat baris matriks
+        for x in range(0,bilangan[1]):
+            for y in range(0,bilangan[2]):
+                matriks[x].append(y)
+                matriks[x][y] = abjad[z]
+                z +=1
+#    mat = np.reshape(matriks,(bilangan[1],bilangan[2]))
+#    print(mat)
+    print(matriks[0])
+
+#def cek():
+    
+        
+buatMatriks()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
