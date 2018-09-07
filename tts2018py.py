@@ -92,7 +92,7 @@ def buatMatriks():
                 z +=1
 #    mat = np.reshape(matriks,(bilangan[1],bilangan[2]))
 #    print(mat)
-    print(matriks[0])
+    print(matriks)
 
 #def cek():
     
