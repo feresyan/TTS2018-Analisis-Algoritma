@@ -11,6 +11,8 @@ bilangan = []
 kamus = []
 abjad = []
 matriks = []
+found = False
+result = []
 
 def inputBilangan():
     angka = ''
@@ -62,8 +64,8 @@ def inputKamus():
     if len(kamus) < bilangan[0]:
         print('error : kamus kurang dari',bilangan[0])
     else:
-        boolean = inputAlphabet()
-        return boolean
+        hasil = inputAlphabet()
+        return hasil
     
 def inputAlphabet():
     total_huruf = bilangan[1] * bilangan[2]
@@ -82,6 +84,7 @@ def inputAlphabet():
 
 def buatMatriks():
     z = 0
+    found = False
     if inputBilangan() == True:
         for x in range(0,bilangan[1]):
             matriks.append([]) #Buat baris matriks
@@ -90,68 +93,40 @@ def buatMatriks():
                 matriks[x].append(y)
                 matriks[x][y] = abjad[z]
                 z +=1
-#    mat = np.reshape(matriks,(bilangan[1],bilangan[2]))
-#    print(mat)
-    print(matriks)
-#    matriks = np.array(matriks)
-    ix = np.isin(matriks[0:2,0:2],'d')
-    a = np.where(ix)
-    print(a)
-
-#def cek():
+                
+    mat = np.pad(matriks,1,'constant')
     
-        
+    for word in kamus :
+        ix = np.where(np.isin(mat,word[0]))
+        for i in range(np.shape(ix)[1]):
+            A = np.array(mat)
+            wix = 1
+            while wix < len(word):
+                B = np.array(A[ix[0][0]-1:ix[0][0]+2,ix[1][0]-1:ix[1][0]+2])
+                C = np.zeros(np.shape(A),dtype='str')
+                print(C)
+                print('----------------------')
+                C[ix[0][0]-1:ix[0][0]+2,ix[1][0]-1:ix[1][0]+2] = B
+                print(C)
+                print('xxxxxxxxxxxxxxxxxxxxxx')
+                B[1,1] = ''
+                if(np.sum(np.isin(B,word[wix]))==0) :
+                    found = False
+                    break
+                ix = np.where(np.isin(C,word[wix]))
+                wix+=1
+            ix = np.where(np.isin(A,word[0]))
+            if wix == len(word) :
+                found = True
+                break
+        if found :
+            result.append(word+' ')
+            
+    if len(result) == 0:
+        result.append('-')
+        print(result[0])
+    else:
+        for i in range(0,len(result)):
+            print(result[i],end='')          
+                
 buatMatriks()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
