@@ -93,6 +93,10 @@ def buatMatriks():
 #    mat = np.reshape(matriks,(bilangan[1],bilangan[2]))
 #    print(mat)
     print(matriks)
+#    matriks = np.array(matriks)
+    ix = np.isin(matriks,'d')
+    a = np.where(ix)
+    print(a)
 
 #def cek():
     
