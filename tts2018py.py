@@ -94,7 +94,7 @@ def buatMatriks():
 #    print(mat)
     print(matriks)
 #    matriks = np.array(matriks)
-    ix = np.isin(matriks,'d')
+    ix = np.isin(matriks[0:2,0:2],'d')
     a = np.where(ix)
     print(a)
 
